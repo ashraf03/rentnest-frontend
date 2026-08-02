@@ -1,8 +1,13 @@
-// app/layout.tsx
+import type { Metadata } from "next";
+import "./globals.css";
 
-import Navbar from "../components/shared/navbar/navbar";
+import { ThemeProvider } from "@/providers/theme-provider";
+import Navbar from "@/components/shared/navbar/navbar";
 
-
+export const metadata: Metadata = {
+  title: "RentNest",
+  description: "Rental Property Platform",
+};
 
 export default function RootLayout({
   children,
@@ -10,11 +15,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <Navbar />
+        <ThemeProvider>
+          <Navbar />
 
-        {children}
+          <main>{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   );

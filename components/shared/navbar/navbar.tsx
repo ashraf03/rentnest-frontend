@@ -1,6 +1,7 @@
 import Logo from "./logo";
 import DesktopNav from "./desktop-nav";
 import MobileNav from "./mobile-nav";
+import ThemeToggle from "./theme-toggle";
 
 export default function Navbar() {
   return (
@@ -10,7 +11,10 @@ export default function Navbar() {
 
         <DesktopNav />
 
-        <MobileNav />
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <MobileNav />
+        </div>
       </div>
     </header>
   );
