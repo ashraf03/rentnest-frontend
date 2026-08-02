@@ -1,16 +1,22 @@
+import HeroBackground from "./hero-background";
 import HeroContent from "./hero-content";
 import HeroImage from "./hero-image";
 import HeroStats from "./hero-stats";
+import ScrollIndicator from "./scroll-indicator";
 
 export default function Hero() {
   return (
-    <section className="border-b bg-gradient-to-b from-background via-background to-muted/30">
-      <div className="container mx-auto px-4 py-20">
+    <section className="relative overflow-hidden border-b">
+      <HeroBackground />
+
+      <div className="container relative mx-auto px-5 py-24">
         <div className="grid items-center gap-16 lg:grid-cols-2">
           <div>
             <HeroContent />
 
             <HeroStats />
+
+            <ScrollIndicator />
           </div>
 
           <HeroImage />
