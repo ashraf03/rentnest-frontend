@@ -1,17 +1,20 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import BudgetSelect from "./budget-select";
+import LocationInput from "./location-input";
+import PropertyTypeSelect from "./property-type-select";
+import SearchButton from "./search-button";
 
 export default function HeroSearch() {
   return (
-    <div className="flex flex-col gap-4 rounded-xl border bg-background p-4 shadow-sm md:flex-row">
-      <Input
-        placeholder="Search by location..."
-        className="flex-1"
-      />
+    <div className="mt-8 rounded-2xl border bg-background p-4 shadow-lg">
+      <div className="grid gap-4 lg:grid-cols-4">
+        <LocationInput />
 
-      <Button className="md:px-8">
-        Search
-      </Button>
+        <PropertyTypeSelect />
+
+        <BudgetSelect />
+
+        <SearchButton />
+      </div>
     </div>
   );
 }
