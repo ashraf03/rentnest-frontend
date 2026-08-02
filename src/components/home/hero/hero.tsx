@@ -1,31 +1,19 @@
-import Image from "next/image";
-
 import HeroContent from "./hero-content";
+import HeroImage from "./hero-image";
 import HeroStats from "./hero-stats";
 
 export default function Hero() {
   return (
-    <section className="border-b bg-gradient-to-b from-background via-background to-muted/40">
-      <div className="container mx-auto px-4 py-16 lg:py-24">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          {/* Left */}
+    <section className="border-b bg-gradient-to-b from-background via-background to-muted/30">
+      <div className="container mx-auto px-4 py-20">
+        <div className="grid items-center gap-16 lg:grid-cols-2">
           <div>
             <HeroContent />
 
             <HeroStats />
           </div>
 
-          {/* Right */}
-          <div className="relative">
-            <Image
-              src="/images/hero/hero-banner.png"
-              alt="RentNest Hero"
-              width={700}
-              height={700}
-              priority
-              className="mx-auto h-auto w-full max-w-xl"
-            />
-          </div>
+          <HeroImage />
         </div>
       </div>
     </section>
