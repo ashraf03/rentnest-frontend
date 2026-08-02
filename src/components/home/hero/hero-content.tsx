@@ -1,27 +1,31 @@
+import HeroActions from "./hero-actions";
+import HeroBadge from "./hero-badge";
 import HeroSearch from "./hero-search";
 
 export default function HeroContent() {
   return (
     <>
-      <span className="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
-        Find Your Dream Rental
-      </span>
+      <HeroBadge />
 
-      <h1 className="mt-6 text-4xl font-bold leading-tight md:text-6xl">
+      <h1 className="mt-6 text-4xl font-extrabold leading-tight tracking-tight md:text-6xl">
         Find Your Perfect
         <span className="block text-primary">
           Rental Home
         </span>
+        in Bangladesh
       </h1>
 
-      <p className="mt-6 max-w-xl text-muted-foreground">
-        Browse verified apartments, flats, and family homes across Bangladesh.
-        Connect with trusted landlords and discover your next home with ease.
+      <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">
+        Browse verified apartments, family homes, and premium
+        rental properties across Bangladesh. Connect with trusted
+        landlords and move into your dream home with confidence.
       </p>
 
       <div className="mt-8">
         <HeroSearch />
       </div>
+
+      <HeroActions />
     </>
   );
 }

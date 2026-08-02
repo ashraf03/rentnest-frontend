@@ -5,7 +5,7 @@ import HeroStats from "./hero-stats";
 
 export default function Hero() {
   return (
-    <section className="border-b bg-muted/30">
+    <section className="border-b bg-gradient-to-b from-background via-background to-muted/40">
       <div className="container mx-auto px-4 py-16 lg:py-24">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           {/* Left */}
