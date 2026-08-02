@@ -1,14 +1,14 @@
-import { navLinks } from "./nav-links";
 import NavItem from "./nav-item";
+import { navLinks } from "./nav-links";
 
 export default function DesktopNav() {
   return (
-    <nav className="hidden items-center gap-8 md:flex">
-      {navLinks.map((link) => (
+    <nav className="hidden lg:flex items-center gap-8">
+      {navLinks.map((item) => (
         <NavItem
-          key={link.href}
-          href={link.href}
-          title={link.title}
+          key={item.href}
+          href={item.href}
+          title={item.title}
         />
       ))}
     </nav>
