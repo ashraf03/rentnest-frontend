@@ -1,8 +1,10 @@
 import { API_URL } from "@/constants/api";
+
+import { ApiResponse } from "@/types/api-response";
 import { Property } from "@/types/property";
 
 export async function getFeaturedProperties() {
-  const res = await fetch(
+  const response = await fetch(
     `${API_URL}/properties?featured=true`,
     {
       next: {
@@ -11,13 +13,12 @@ export async function getFeaturedProperties() {
     }
   );
 
-  if (!res.ok) {
-    throw new Error(
-      "Failed to fetch properties."
-    );
+  if (!response.ok) {
+    throw new Error("Failed to fetch properties");
   }
 
-  const data = await res.json();
+  const result: ApiResponse<Property[]> =
+    await response.json();
 
-  return data.data as Property[];
+  return result.data;
 }
