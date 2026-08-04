@@ -1,4 +1,12 @@
+import Image from "next/image";
+
 import { Property } from "@/types/property";
+
+import FavoriteButton from "./favorite-button";
+import PropertyBadge from "./property-badge";
+import PropertyMeta from "./property-meta";
+import PropertyPrice from "./property-price";
+import ViewDetailsButton from "./view-details-button";
 
 interface PropertyCardProps {
   property: Property;
@@ -8,18 +16,40 @@ export default function PropertyCard({
   property,
 }: PropertyCardProps) {
   return (
-    <div className="rounded-xl border bg-background p-5 shadow-sm transition hover:shadow-md">
-      <h3 className="text-lg font-semibold">
-        {property.title}
-      </h3>
+    <article className="overflow-hidden rounded-2xl border bg-background shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+      <div className="relative">
+        <Image
+          src={property.thumbnail}
+          alt={property.title}
+          width={600}
+          height={400}
+          className="aspect-[4/3] w-full object-cover"
+        />
 
-      <p className="mt-2 text-muted-foreground">
-        {property.location}
-      </p>
+        <PropertyBadge available={property.available} />
 
-      <p className="mt-4 text-xl font-bold text-primary">
-        ৳ {property.rent.toLocaleString()}
-      </p>
-    </div>
+        <FavoriteButton />
+      </div>
+
+      <div className="space-y-5 p-5">
+        <div>
+          <h3 className="line-clamp-1 text-xl font-semibold">
+            {property.title}
+          </h3>
+        </div>
+
+        <PropertyMeta
+          location={property.location}
+          bedrooms={property.bedrooms}
+          bathrooms={property.bathrooms}
+        />
+
+        <PropertyPrice rent={property.rent} />
+
+        <ViewDetailsButton
+          slug={property.slug}
+        />
+      </div>
+    </article>
   );
 }
