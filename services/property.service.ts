@@ -1,38 +1,16 @@
-import { API_URL } from "../constants/api";
 import { ApiResponse } from "../types/api-response";
+import { PropertyFilters } from "../types/filters";
 import { Property } from "../types/property";
-
-interface GetPropertiesParams {
-  search?: string;
-  category?: string;
-  minPrice?: string;
-  maxPrice?: string;
-  page?: string;
-}
+import { http } from "./http";
+import { createQueryString } from "@/lib/query-string";
 
 export async function getProperties(
-  params: GetPropertiesParams
-): Promise<ApiResponse<Property[]>> {
-  const query = new URLSearchParams();
+  filters: PropertyFilters
+) {
+  const query =
+    createQueryString(filters);
 
-  Object.entries(params).forEach(([key, value]) => {
-    if (value) {
-      query.set(key, value);
-    }
-  });
-
-  const response = await fetch(
-    `${API_URL}/properties?${query.toString()}`,
-    {
-      next: {
-        revalidate: 60,
-      },
-    }
+  return http<ApiResponse<Property[]>>(
+    `/properties?${query}`
   );
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch properties.");
-  }
-
-  return response.json();
 }
