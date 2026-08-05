@@ -1,11 +1,24 @@
-import { API_URL } from "@/constants/api";
+interface GetPropertiesParams {
+  search?: string;
+  category?: string;
+  minPrice?: string;
+  maxPrice?: string;
+  page?: string;
+}
 
-import { ApiResponse } from "@/types/api-response";
-import { Property } from "@/types/property";
+export async function getProperties(
+  params: GetPropertiesParams
+) {
+  const query = new URLSearchParams();
 
-export async function getFeaturedProperties() {
+  Object.entries(params).forEach(([key, value]) => {
+    if (value) {
+      query.set(key, value);
+    }
+  });
+
   const response = await fetch(
-    `${API_URL}/properties?featured=true`,
+    `${API_URL}/properties?${query.toString()}`,
     {
       next: {
         revalidate: 60,
@@ -14,11 +27,8 @@ export async function getFeaturedProperties() {
   );
 
   if (!response.ok) {
-    throw new Error("Failed to fetch properties");
+    throw new Error("Failed to fetch properties.");
   }
 
-  const result: ApiResponse<Property[]> =
-    await response.json();
-
-  return result.data;
+  return response.json();
 }

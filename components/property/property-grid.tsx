@@ -1,3 +1,5 @@
+import { getProperties } from "@/services/property.service";
+
 interface PropertyGridProps {
   searchParams: {
     search?: string;
@@ -8,16 +10,20 @@ interface PropertyGridProps {
   };
 }
 
-export default function PropertyGrid({
+export default async function PropertyGrid({
   searchParams,
 }: PropertyGridProps) {
-  console.log(searchParams);
+  const properties =
+    await getProperties(searchParams);
 
   return (
-    <div>
-
-      Property Grid
-
+    <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+      {properties.data.map((property) => (
+        <PropertyCard
+          key={property.id}
+          property={property}
+        />
+      ))}
     </div>
   );
 }

@@ -1,41 +1,35 @@
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-export default function CategoryFilter() {
+interface CategoryFilterProps {
+  defaultValue?: string;
+}
+
+export default function CategoryFilter({
+  defaultValue,
+}: CategoryFilterProps) {
   return (
-    <div className="space-y-2">
-      <label className="text-sm font-medium">
-        Category
-      </label>
+    <Select name="category" defaultValue={defaultValue}>
+      <SelectTrigger>
+        <SelectValue placeholder="Select category" />
+      </SelectTrigger>
 
-      <Select>
-        <SelectTrigger>
-          <SelectValue placeholder="Select category" />
-        </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="apartment">
+          Apartment
+        </SelectItem>
 
-        <SelectContent>
-          <SelectItem value="apartment">
-            Apartment
-          </SelectItem>
+        <SelectItem value="flat">
+          Flat
+        </SelectItem>
 
-          <SelectItem value="flat">
-            Flat
-          </SelectItem>
+        <SelectItem value="house">
+          House
+        </SelectItem>
 
-          <SelectItem value="house">
-            House
-          </SelectItem>
-
-          <SelectItem value="office">
-            Office
-          </SelectItem>
-        </SelectContent>
-      </Select>
-    </div>
+        <SelectItem value="office">
+          Office
+        </SelectItem>
+      </SelectContent>
+    </Select>
   );
 }
