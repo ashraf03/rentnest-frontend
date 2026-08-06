@@ -1,55 +1,51 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+"use client";
 
-import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
-import { Property } from "@/types/property";
-
-import AvailabilityBadge from "./availability-badge";
+import RentRequestDialog from "./rent-request-dialog";
 
 interface Props {
   property: Property;
+  user: User | null;
 }
 
 export default function RequestRentCard({
   property,
+  user,
 }: Props) {
+  const router = useRouter();
+
+  function handleRequest() {
+    if (!user) {
+      router.push("/auth/login");
+
+      return;
+    }
+
+    if (user.role !== "TENANT") {
+      alert(
+        "Only tenants can request rentals."
+      );
+
+      return;
+    }
+  }
+
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>
-          Rent Summary
-        </CardTitle>
-      </CardHeader>
-
-      <CardContent className="space-y-5">
-
-        <div>
-          <p className="text-sm text-muted-foreground">
-            Monthly Rent
-          </p>
-
-          <h2 className="text-3xl font-bold">
-            ৳ {property.rent.toLocaleString()}
-          </h2>
-        </div>
-
-        <AvailabilityBadge
-          available={property.available}
-        />
-
-        <Button
-          className="w-full"
-          disabled={!property.available}
+    <>
+      {!user ||
+      user.role !== "TENANT" ? (
+        <button
+          onClick={handleRequest}
+          className="w-full rounded-lg border px-4 py-2"
         >
           Request to Rent
-        </Button>
-
-      </CardContent>
-    </Card>
+        </button>
+      ) : (
+        <RentRequestDialog
+          propertyId={property.id}
+        />
+      )}
+    </>
   );
 }
