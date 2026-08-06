@@ -1,13 +1,26 @@
-import FilterForm from "./filters/filter-form";
+import { Property } from "@/types/property";
 
-export default function PropertySidebar() {
+import LandlordCard from "./landlord-card";
+import RequestRentCard from "./request-rent-card";
+
+interface Props {
+  property: Property;
+}
+
+export default function PropertySidebar({
+  property,
+}: Props) {
   return (
-    <aside className="rounded-2xl border bg-background p-6 shadow-sm">
-      <h2 className="mb-6 text-lg font-semibold">
-        Filters
-      </h2>
+    <div className="space-y-6">
 
-      <FilterForm />
-    </aside>
+      <LandlordCard
+        property={property}
+      />
+
+      <RequestRentCard
+        property={property}
+      />
+
+    </div>
   );
 }

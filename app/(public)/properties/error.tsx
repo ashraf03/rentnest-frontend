@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 
 export default function Error({
-  error,
   reset,
 }: {
   error: Error;
@@ -14,19 +13,15 @@ export default function Error({
 
       <div className="text-center">
 
-        <h2 className="text-3xl font-bold">
-          Failed to load properties
+        <h2 className="text-2xl font-bold">
+          Failed to load property
         </h2>
 
-        <p className="mt-4 text-muted-foreground">
-          {error.message}
-        </p>
-
         <Button
-          className="mt-6"
+          className="mt-5"
           onClick={reset}
         >
-          Retry
+          Try Again
         </Button>
 
       </div>

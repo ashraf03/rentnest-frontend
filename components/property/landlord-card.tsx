@@ -1,21 +1,16 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 
-export default function RequestRentCard() {
+export default function LandlordCard() {
   return (
     <Card>
       <CardHeader>
         <CardTitle>
-          Interested?
+          Landlord Information
         </CardTitle>
       </CardHeader>
 
       <CardContent>
-
-        <Button className="w-full">
-          Request to Rent
-        </Button>
-
+        Coming Soon...
       </CardContent>
     </Card>
   );
