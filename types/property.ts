@@ -5,14 +5,37 @@ export interface Category {
 
 export interface Property {
   id: string;
-  title: string;
+
   slug: string;
+
+  title: string;
+
   location: string;
+
   city: string;
-  rent: number;
-  bedrooms: number;
-  bathrooms: number;
+
   thumbnail: string;
+
+  images: string[];
+
+  rent: number;
+
+  bedrooms: number;
+
+  bathrooms: number;
+
+  area: number;
+
+  category: {
+    id: string;
+    name: string;
+  };
+
+  amenities: string[];
+
+  description: string;
+
+  furnished: boolean;
+
   available: boolean;
-  category: Category;
 }

@@ -1,50 +1,34 @@
-import { getPropertyBySlug } from "@/services/property.service";
+import Image from "next/image";
 
-import PropertyGallery from "./property-gallery";
-import PropertyInformation from "./property-information";
-import PropertySidebar from "./property-sidebar";
+import { Property } from "@/types/property";
+
+import GalleryThumbnails from "./gallery-thumbnails";
 
 interface Props {
-  slug: string;
+  property: Property;
 }
 
-export default async function PropertyDetailsPage({
-  slug,
+export default function PropertyGallery({
+  property,
 }: Props) {
-  const response =
-    await getPropertyBySlug(slug);
-
-  const property = response.data;
-
   return (
-    <section className="py-12">
-      <div className="container mx-auto px-5">
+    <div className="space-y-4">
 
-        <div className="grid gap-10 lg:grid-cols-12">
-
-          <div className="space-y-8 lg:col-span-8">
-
-            <PropertyGallery
-              property={property}
-            />
-
-            <PropertyInformation
-              property={property}
-            />
-
-          </div>
-
-          <aside className="lg:col-span-4">
-
-            <PropertySidebar
-              property={property}
-            />
-
-          </aside>
-
-        </div>
-
+      <div className="overflow-hidden rounded-2xl border">
+        <Image
+          src={property.thumbnail}
+          alt={property.title}
+          width={1200}
+          height={700}
+          priority
+          className="aspect-[16/9] w-full object-cover"
+        />
       </div>
-    </section>
+
+      <GalleryThumbnails
+        images={property.images}
+      />
+
+    </div>
   );
 }
