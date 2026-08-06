@@ -1,50 +1,37 @@
-import { getPropertyBySlug } from "@/services/property.service";
+import { getRelatedProperties } from "@/services/property.service";
 
-import PropertyGallery from "./property-gallery";
-import PropertyInformation from "./property-information";
-import PropertySidebar from "./property-sidebar";
+import RelatedEmpty from "./related-empty";
+import RelatedPropertyGrid from "./related-property-grid";
 
-interface Props {
-  slug: string;
+interface Props{
+    slug:string;
 }
 
-export default async function PropertyDetailsPage({
-  slug,
-}: Props) {
-  const response =
-    await getPropertyBySlug(slug);
+export default async function RelatedProperties({
+    slug,
+}:Props){
 
-  const property = response.data;
+    const response =
+        await getRelatedProperties(slug);
 
-  return (
-    <section className="py-12">
-      <div className="container mx-auto px-5">
+    if(response.data.length===0){
+        return <RelatedEmpty/>
+    }
 
-        <div className="grid gap-10 lg:grid-cols-12">
+    return(
 
-          <div className="space-y-8 lg:col-span-8">
+        <section className="mt-20">
 
-            <PropertyGallery
-              property={property}
+            <h2 className="mb-8 text-3xl font-bold">
+                You May Also Like
+            </h2>
+
+            <RelatedPropertyGrid
+                properties={response.data}
             />
 
-            <PropertyInformation
-              property={property}
-            />
+        </section>
 
-          </div>
+    )
 
-          <aside className="lg:col-span-4">
-
-            <PropertySidebar
-              property={property}
-            />
-
-          </aside>
-
-        </div>
-
-      </div>
-    </section>
-  );
 }

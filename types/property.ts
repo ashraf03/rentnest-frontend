@@ -3,6 +3,15 @@ export interface Category {
   name: string;
 }
 
+export interface Landlord {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  avatar: string;
+  verified: boolean;
+}
+
 export interface Property {
   id: string;
 
@@ -38,4 +47,5 @@ export interface Property {
   furnished: boolean;
 
   available: boolean;
+  landlord: Landlord;
 }
