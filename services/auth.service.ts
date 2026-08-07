@@ -1,9 +1,7 @@
 import { http } from "./http";
 
-import {
-  LoginPayload,
-  RegisterPayload,
-} from "@/types/auth";
+import { LoginPayload } from "@/types/auth";
+
 
 export async function login(
   payload: LoginPayload
@@ -19,6 +17,7 @@ export async function register(
 ) {
   return http("/auth/register", {
     method: "POST",
+
     body: JSON.stringify(payload),
   });
 }
