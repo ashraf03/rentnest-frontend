@@ -1,23 +1,19 @@
 import { http } from "./http";
 
-import { LoginPayload } from "@/types/auth";
+import { User } from "@/types/user";
+import { ApiResponse } from "@/types/api-response";
 
-
-export async function login(
-  payload: LoginPayload
-) {
-  return http("/auth/login", {
-    method: "POST",
-    body: JSON.stringify(payload),
-  });
+export async function getCurrentUser() {
+  return http<ApiResponse<User>>(
+    "/auth/me",
+    {
+      method: "GET",
+    }
+  );
 }
 
-export async function register(
-  payload: RegisterPayload
-) {
-  return http("/auth/register", {
+export async function logout() {
+  return http("/auth/logout", {
     method: "POST",
-
-    body: JSON.stringify(payload),
   });
 }
