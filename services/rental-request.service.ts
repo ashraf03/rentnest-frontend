@@ -1,12 +1,19 @@
 import { http } from "./http";
 
-import { RentalRequestPayload } from "@/types/rental-request";
-
-export async function createRentalRequest(
-  payload: RentalRequestPayload
+export async function getMyRequests(
+  params: {
+    page?: number;
+    search?: string;
+    status?: string;
+  }
 ) {
-  return http("/rent-requests", {
-    method: "POST",
-    body: JSON.stringify(payload),
+  const query = new URLSearchParams({
+    page: String(params.page ?? 1),
+    search: params.search ?? "",
+    status: params.status ?? "",
   });
+
+  return http(
+    `/rent-requests/me?${query}`
+  );
 }
