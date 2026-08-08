@@ -34,10 +34,17 @@ import { Button } from "@/components/ui/button";
 import {
   Label,
 } from "@/components/ui/label";
+import ProfileAvatar from "./profile-avatar";
+
 
 interface Props {
   user: UserProfile;
 }
+
+<ProfileAvatar
+  name={user.name}
+  avatar={user.avatar}
+/>
 
 export default function ProfileForm({
   user,

@@ -1,33 +1,13 @@
-export interface Category {
-  id: string;
-  name: string;
-}
-
-export interface Landlord {
-  id: string;
-  name: string;
-  email: string;
-  phone: string;
-  avatar: string;
-  verified: boolean;
-}
-
 export interface Property {
   id: string;
 
-  slug: string;
-
   title: string;
 
+  description: string;
+
+  price: number;
+
   location: string;
-
-  city: string;
-
-  thumbnail: string;
-
-  images: string[];
-
-  rent: number;
 
   bedrooms: number;
 
@@ -35,17 +15,24 @@ export interface Property {
 
   area: number;
 
-  category: {
-    id: string;
-    name: string;
-  };
+  propertyType: string;
+
+  images: string[];
 
   amenities: string[];
 
-  description: string;
+  isAvailable: boolean;
 
-  furnished: boolean;
+  createdAt: string;
+}
 
-  available: boolean;
-  landlord: Landlord;
+export interface PropertyResponse {
+  data: Property[];
+
+  meta?: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+  };
 }

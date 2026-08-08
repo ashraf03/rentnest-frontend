@@ -1,17 +1,23 @@
-import { Home } from "lucide-react";
+import {
+  Home,
+} from "lucide-react";
 
 export default function PropertyEmpty() {
   return (
-    <div className="rounded-xl border border-dashed py-20 text-center">
-      <Home className="mx-auto h-12 w-12 text-muted-foreground" />
+    <div className="flex min-h-[400px] flex-col items-center justify-center rounded-xl border border-dashed text-center">
 
-      <h3 className="mt-6 text-2xl font-semibold">
+      <Home className="h-12 w-12 text-muted-foreground" />
+
+      <h2 className="mt-5 text-xl font-semibold">
         No Properties Found
-      </h3>
+      </h2>
 
-      <p className="mt-2 text-muted-foreground">
-        Try changing your filters.
+      <p className="mt-2 max-w-md text-sm text-muted-foreground">
+        We couldn't find any available
+        properties right now. Please check
+        again later.
       </p>
+
     </div>
   );
 }
